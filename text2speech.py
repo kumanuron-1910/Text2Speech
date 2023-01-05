@@ -19,8 +19,8 @@ layout = [[sg.Frame(title="言語",  layout=radio_layout, relief=sg.RELIEF_RAISE
           [sg.Multiline(size=(100, 10), key='-InputText-')],
           [sg.Button('読み上げ', key='-SpeechButton-'), sg.Button('クリア', key='-ClearButton-'), sg.Button('終了', key='-ExitButton-')]]
 
-window = sg.Window(title='Text2Speech', layout=layout,
-                   size=(650, 300), resizable=False)
+# GUIウィンドウ設定
+window = sg.Window(title='Text2Speech', layout=layout, size=(650, 300), resizable=False)
 
 
 # Text to speech 関数
@@ -45,6 +45,7 @@ def text_to_speech(input_text, language):
             mixer.music.stop()
             mixer.music.unload()
             break
+            
     os.remove(filename)
 
 
@@ -62,13 +63,11 @@ if __name__ == '__main__':
             sg.popup('テキストを入力してください!')
         elif event == '-SpeechButton-' and values['-En-'] == True:
             # スレッド処理
-            speech_en_thread = threading.Thread(
-                target=text_to_speech, args=(values['-InputText-'], 'en'))
+            speech_en_thread = threading.Thread(target=text_to_speech, args=(values['-InputText-'], 'en'))
             speech_en_thread.start()
         elif event == '-SpeechButton-' and values['-Ja-'] == True:
             # スレッド処理
-            speech_ja_thread = threading.Thread(
-                target=text_to_speech, args=(values['-InputText-'], 'ja'))
+            speech_ja_thread = threading.Thread(target=text_to_speech, args=(values['-InputText-'], 'ja'))
             speech_ja_thread.start()
 
     window.close()
