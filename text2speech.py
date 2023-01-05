@@ -62,11 +62,13 @@ if __name__ == '__main__':
             sg.popup('テキストを入力してください!')
         elif event == '-SpeechButton-' and values['-En-'] == True:
             # スレッド処理
-            speech_en_thread = threading.Thread(target=text_to_speech, args=(values['-InputText-'], 'en'))
+            speech_en_thread = threading.Thread(
+                target=text_to_speech, args=(values['-InputText-'], 'en'))
             speech_en_thread.start()
         elif event == '-SpeechButton-' and values['-Ja-'] == True:
             # スレッド処理
-            speech_ja_thread = threading.Thread(target=text_to_speech, args=(values['-InputText-'], 'ja'))
+            speech_ja_thread = threading.Thread(
+                target=text_to_speech, args=(values['-InputText-'], 'ja'))
             speech_ja_thread.start()
 
     window.close()
